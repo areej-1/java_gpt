@@ -33,4 +33,3 @@ const openai = new OpenAIApi(configuration);
     process.exit(1);
   }
 })();
-//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
