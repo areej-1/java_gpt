@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class chitchatchatchat {
-    public static void main(String[] args) {
+public class chitchatchatchat { 
+    public static void main(String[] args) { 
         Scanner scanner = new Scanner(System.in);
 
         String input = "";
