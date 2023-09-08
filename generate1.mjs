@@ -1,10 +1,15 @@
-// generate.js
-const { Configuration, OpenAIApi } = require('openai');
+import dotenv from 'dotenv';
+import OpenAI from 'openai';
 
-const configuration = new Configuration({
-  apiKey: 'sk-KEY-HERE', // replace with your OpenAI key
-});
-const openai = new OpenAIApi(configuration);
+dotenv.config();
+
+const apiKey = process.env.OPENAI_API_KEY;
+if (!apiKey) {
+    console.error("API Key not found!");
+    process.exit(1);
+}
+
+const openai = new OpenAI({ apiKey });
 
 (async function() {
   const input = process.argv[2] || '';
@@ -27,17 +32,18 @@ const openai = new OpenAIApi(configuration);
   ];
 
   try {
-    const completion = await openai.createChatCompletion({
+    const completion = await openai.chat.completions.create({
       model: "gpt-4-0613",
       messages: messages,
-      temperature: 0.6,
-      max_tokens: 1000,
     });
     
-    const response = completion.data.choices[0].message['content'];
+    
+    const response = completion.choices[0].message.content;
     console.log(response);
-  } catch(error) {
+} catch(error) {
     console.error(`Error with OpenAI API request: ${error.message}`);
     process.exit(1);
-  }
+}
+
+
 })();

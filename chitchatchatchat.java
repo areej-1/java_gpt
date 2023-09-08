@@ -23,7 +23,7 @@ public class chitchatchatchat {
             conversationHistory += "Human: " + input + "\n";
 
             try {
-                ProcessBuilder pb = new ProcessBuilder("/usr/local/bin/node", "/Users/areej/openai-quickstart-node/pages/api/generate1.js", input, conversationHistory);
+                ProcessBuilder pb = new ProcessBuilder("/usr/local/bin/node", "/Users/areej/java_gpt/generate1.mjs", input, conversationHistory);
                 Process p = pb.start();
 
                 BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -50,18 +50,13 @@ public class chitchatchatchat {
             conversationHistory = summarizeConvo(conversationHistory);
             System.out.println(conversationHistory);
             
-            /*try {
-                Thread.sleep(5000);  // 5 seconds delay
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }*/
         }
         scanner.close();
     }
     public static String summarizeConvo(String convoHis) {
     	String sumVer = "";
     	 try {
-             ProcessBuilder pb = new ProcessBuilder("/usr/local/bin/node", "/Users/areej/openai-quickstart-node/pages/api/summarize.js", convoHis);
+             ProcessBuilder pb = new ProcessBuilder("/usr/local/bin/node", "/Users/areej/java_gpt/summarize.mjs", convoHis);
              Process p = pb.start();
 
              BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
